@@ -1,26 +1,20 @@
 #Given a string, find the length of the longest substring without repeating characters
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        l=[]
-        nl=[]
-        num=[]
-
-        if len(s)==0:
-            res = 0
-        for a in range(0,len(s)):
-            num.append(a)
+        substring = ''
+        di = {}
         
-        for j in num:
-            for i in range(j,len(s)):
-                if s[i] not in l:
-                    l.append(s[i])
-                else:
-                    #num.append(i)
-                    break
-            nl.append(len(''.join(l)))
-            l.clear()
-            res=max(nl)
-        return(res)
+        if len(s) < 2:
+            return(len(s))
+        for char in s:
+            if char not in substring:
+                substring += char
+            else:
+                di[substring] = len(substring)
+                substring = substring[substring.index(char)+1:]
+                substring += char
+        di[substring] = len(substring)
+        return(max(di.values()))
         
     
 Solution().lenOfLongestSubstring('abrkaabcdefghijjxxx') 
