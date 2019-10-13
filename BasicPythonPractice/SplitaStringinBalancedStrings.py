@@ -2,6 +2,20 @@
 #Given a balanced string s split it in the maximum amount of balanced strings
 #Return the maximum amount of splitted balanced strings.
 
+#Improvsed preferred solution:
+class Solution:
+   def balancedStringSplit(self, S):
+        ans = 0
+        bal = 0
+        for c in S:
+            bal += 1 if c == 'L' else -1
+            if bal == 0:
+                ans += 1
+        return ans
+s= 'RLRRLLRLRL'          
+Solution().balancedStringSplit(s) 
+
+ #Old solution
 class Solution:
     def balancedStringSplit(self, s):
         dups = s
